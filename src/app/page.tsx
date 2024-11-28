@@ -7,6 +7,8 @@ type Photo = {
   id: string;
   image: {
     url: string;
+    width: number;
+    height: number;
   };
   genre: string;
   pickup: boolean;
@@ -20,7 +22,6 @@ export default function Home() {
       const res = await fetch("/api/photolist");
       const data = await res.json();
       setPhotoList(data.contents);
-      console.log(data.contents);
     };
     fetchPhotoList();
   }, []);
@@ -29,8 +30,18 @@ export default function Home() {
       <p>ここに内容が表示されます。</p>
       {photoList.map((photo) => (
         <div key={photo.id}>
+          <p>
+            <Image
+              src={photo.image.url as string}
+              alt='description'
+              width={300}
+              height={200}
+            />
+          </p>
           <p>{photo.id}</p>
           <p>{photo.genre}</p>
+          <p>{photo.image.width}</p>
+          <p>{photo.image.height}</p>
         </div>
       ))}
     </div>
