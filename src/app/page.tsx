@@ -100,8 +100,13 @@ export default function Home() {
     );
   };
 
+  // 状態をリセットする関数
+  const handleClearFilters = () => {
+    setSelectedGenres([]); // 選択されたジャンルを空にする
+  };
+
   return (
-    <div>
+    <div className='p-4'>
       <div>
         <p>ジャンルで絞り込み:</p>
         {uniqueGenres.map((genre) => {
@@ -120,15 +125,19 @@ export default function Home() {
           );
         })}
       </div>
+      <p>
+        <button onClick={handleClearFilters}>全表示（絞り込みクリア）</button>
+      </p>
 
-      <div>
+      <div className='columns-4 gap-4'>
         {filteredPhotos.map((photo) => (
           <div key={photo.id}>
             <NextImage
+              className='w-full'
               src={photo.image.url}
               alt='description'
-              width={300}
-              height={200}
+              width={photo.image.width}
+              height={photo.image.height}
               onLoadingComplete={() => fetchExifData(photo)} // Exif情報取得
             />
             <p>Genre: {photo.genre}</p>
