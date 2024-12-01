@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "exif-js": "^2.3.0",
     "microcms-js-sdk": "^3.1.2",
     "next": "14.2.18",
     "react": "^18",
