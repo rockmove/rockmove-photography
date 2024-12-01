@@ -27,15 +27,26 @@ type ExifData = {
 export default function Home() {
   const [photoList, setPhotoList] = useState<Photo[]>([]);
   const [exifData, setExifData] = useState<Record<string, ExifData>>({});
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]); // 選択されたジャンル
+  const [filteredPhotos, setFilteredPhotos] = useState<Photo[]>([]); // 絞り込んだ写真リスト
 
   useEffect(() => {
     const fetchPhotoList = async () => {
       const res = await fetch("/api/photolist");
       const data = await res.json();
       setPhotoList(data.contents);
+      setFilteredPhotos(data.contents); // 初期値としてすべての写真を表示
     };
     fetchPhotoList();
   }, []);
+
+  useEffect(() => {
+    // 選択されたジャンルで写真を絞り込む
+    const updatedPhotos = photoList.filter((photo) =>
+      selectedGenres.length ? selectedGenres.includes(photo.genre) : true
+    );
+    setFilteredPhotos(updatedPhotos);
+  }, [selectedGenres, photoList]);
 
   const fetchExifData = (photo: Photo) => {
     const img = new window.Image(); // ネイティブのImageオブジェクトを明示的に使用
@@ -44,12 +55,12 @@ export default function Home() {
 
     img.onload = () => {
       EXIF.getData(img, function (this: any) {
-        const cameraMake = String(EXIF.getTag(this, "Make") || "N/A"); // カメラメーカーを文字列に変換
-        const cameraModel = String(EXIF.getTag(this, "Model") || "N/A"); // カメラ名を文字列に変換
-        const exposureTime = String(EXIF.getTag(this, "ExposureTime") || "N/A"); // 露出時間を文字列に変換
-        const focalLength = String(EXIF.getTag(this, "FocalLength") || "N/A"); // 焦点距離を文字列に変換
-        const aperture = String(EXIF.getTag(this, "FNumber") || "N/A"); // 絞り値を文字列に変換
-        const iso = String(EXIF.getTag(this, "ISOSpeedRatings") || "N/A"); // ISO感度を文字列に変換
+        const cameraMake = String(EXIF.getTag(this, "Make") || "N/A");
+        const cameraModel = String(EXIF.getTag(this, "Model") || "N/A");
+        const exposureTime = String(EXIF.getTag(this, "ExposureTime") || "N/A");
+        const focalLength = String(EXIF.getTag(this, "FocalLength") || "N/A");
+        const aperture = String(EXIF.getTag(this, "FNumber") || "N/A");
+        const iso = String(EXIF.getTag(this, "ISOSpeedRatings") || "N/A");
 
         setExifData((prev) => ({
           ...prev,
@@ -70,32 +81,74 @@ export default function Home() {
     };
   };
 
+  // ジャンルごとのユニークなキーを生成
+  const genreWithIds = photoList.map((photo) => ({
+    genre: photo.genre,
+    id: photo.id,
+  }));
+
+  // 重複を排除
+  const uniqueGenres = Array.from(
+    new Set(genreWithIds.map((item) => item.genre))
+  );
+
+  const handleCheckboxChange = (genre: string) => {
+    setSelectedGenres((prevGenres) =>
+      prevGenres.includes(genre)
+        ? prevGenres.filter((g) => g !== genre)
+        : [...prevGenres, genre]
+    );
+  };
+
   return (
     <div>
-      <p>ここに内容が表示されます。</p>
-      {photoList.map((photo) => (
-        <div key={photo.id}>
-          <NextImage
-            src={photo.image.url}
-            alt='description'
-            width={300}
-            height={200}
-            onLoadingComplete={() => fetchExifData(photo)} // Exif情報取得
-          />
-          {/* <p>ID: {photo.id}</p> */}
-          <p>Genre: {photo.genre}</p>
-          <p>Width: {photo.image.width}</p>
-          <p>Height: {photo.image.height}</p>
-          <p>CameraMake: {exifData[photo.id]?.cameraMake || "Loading..."}</p>
-          <p>CameraModel: {exifData[photo.id]?.cameraModel || "Loading..."}</p>
-          <p>
-            ExposureTime: {exifData[photo.id]?.exposureTime || "Loading..."}
-          </p>
-          <p>FocalLength: {exifData[photo.id]?.focalLength || "Loading..."}</p>
-          <p>Aperture: {exifData[photo.id]?.aperture || "Loading..."}</p>
-          <p>Iso: {exifData[photo.id]?.iso || "Loading..."}</p>
-        </div>
-      ))}
+      <div>
+        <p>ジャンルで絞り込み:</p>
+        {uniqueGenres.map((genre) => {
+          // それぞれのgenreに対応するphoto.idを取り出す
+          const photoId = genreWithIds.find((item) => item.genre === genre)?.id;
+
+          return (
+            <label key={`${genre}-${photoId}`}>
+              <input
+                type='checkbox'
+                checked={selectedGenres.includes(genre)}
+                onChange={() => handleCheckboxChange(genre)}
+              />
+              {genre}
+            </label>
+          );
+        })}
+      </div>
+
+      <div>
+        {filteredPhotos.map((photo) => (
+          <div key={photo.id}>
+            <NextImage
+              src={photo.image.url}
+              alt='description'
+              width={300}
+              height={200}
+              onLoadingComplete={() => fetchExifData(photo)} // Exif情報取得
+            />
+            <p>Genre: {photo.genre}</p>
+            <p>Width: {photo.image.width}</p>
+            <p>Height: {photo.image.height}</p>
+            <p>CameraMake: {exifData[photo.id]?.cameraMake || "Loading..."}</p>
+            <p>
+              CameraModel: {exifData[photo.id]?.cameraModel || "Loading..."}
+            </p>
+            <p>
+              ExposureTime: {exifData[photo.id]?.exposureTime || "Loading..."}
+            </p>
+            <p>
+              FocalLength: {exifData[photo.id]?.focalLength || "Loading..."}
+            </p>
+            <p>Aperture: {exifData[photo.id]?.aperture || "Loading..."}</p>
+            <p>Iso: {exifData[photo.id]?.iso || "Loading..."}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
