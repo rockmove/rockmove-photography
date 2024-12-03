@@ -5,7 +5,7 @@ export default function Home() {
     <div>
       <div className='relative w-full h-screen overflow-hidden'>
         <video
-          src='/20240217_am_dm3p.mp4'
+          src='/20240217_am_dm3p_hd.mp4'
           autoPlay
           loop
           muted
