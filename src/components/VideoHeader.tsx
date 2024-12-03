@@ -28,7 +28,7 @@ const VideoHeader = () => {
         loop
         muted
         playsInline
-        className='absolute top-0 left-0 w-full h-full  object-cover object-center'
+        className='absolute top-0 left-0 w-full h-full object-cover object-center'
       ></motion.video>
       <motion.div
         style={{
@@ -41,7 +41,7 @@ const VideoHeader = () => {
         }}
         className='absolute bottom-8 w-full text-center'
       >
-        <h1 className='text-white text-7xl'>
+        <h1 className='text-white text-3xl lg:text-7xl'>
           こんな感じのが流れるよ…
           <br />
           こんな感じのが流れるよ…
