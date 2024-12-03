@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-spring/web": "^9.7.5",
     "exif-js": "^2.3.0",
     "microcms-js-sdk": "^3.1.2",
     "next": "14.2.18",
