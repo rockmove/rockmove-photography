@@ -1,4 +1,4 @@
-import TextBox from "@/components/ TextBox";
+import TextBox from "@/components/TextBox";
 import PhotoList from "@/components/PhotoList";
 import VideoHeader from "@/components/VideoHeader";
 
