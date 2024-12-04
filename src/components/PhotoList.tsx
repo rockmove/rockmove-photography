@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import EXIF from "exif-js";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import { IconApature, IconCamera, IconExposure, IconLength } from "./Icon";
 
 type Photo = {
   id: string;
@@ -160,24 +161,47 @@ const PhotoList = () => {
                 onLoadingComplete={() => fetchExifData(photo)} // Exif情報取得
               />
             </dt>
-            <dd className='p-4'>
-              <p>Genre: {photo.genre}</p>
-              <p>Width: {photo.image.width}</p>
-              <p>Height: {photo.image.height}</p>
-              <p>
-                CameraMake: {exifData[photo.id]?.cameraMake || "Loading..."}
-              </p>
-              <p>
-                CameraModel: {exifData[photo.id]?.cameraModel || "Loading..."}
-              </p>
-              <p>
-                ExposureTime: {exifData[photo.id]?.exposureTime || "Loading..."}
-              </p>
-              <p>
-                FocalLength: {exifData[photo.id]?.focalLength || "Loading..."}
-              </p>
-              <p>Aperture: {exifData[photo.id]?.aperture || "Loading..."}</p>
-              <p>Iso: {exifData[photo.id]?.iso || "Loading..."}</p>
+            <dd className='p-4 space-y-1'>
+              <dl className='flex items-center'>
+                <dt>
+                  <IconCamera color='black' label='Camera Maker' />
+                </dt>
+                <dd className='ml-2'>
+                  {`${exifData[photo.id]?.cameraMake || "Loading..."} / ${
+                    exifData[photo.id]?.cameraModel || "Loading..."
+                  }`}
+                </dd>
+              </dl>
+              <dl className='flex items-center'>
+                <dt>
+                  <IconExposure size={26} color='black' label='Exposure' />
+                </dt>
+                <dd className='ml-2'>
+                  {`${exifData[photo.id]?.exposureTime || "Loading..."} sec`}
+                </dd>
+              </dl>
+              <dl className='flex items-center'>
+                <dt>
+                  <IconLength color='black' label='Focal Length' />
+                </dt>
+                <dd className='ml-2'>
+                  {`${exifData[photo.id]?.focalLength || "Loading..."} mm`}
+                </dd>
+              </dl>
+              <dl className='flex items-center'>
+                <dt>
+                  <IconApature color='black' label='Apature' />
+                </dt>
+                <dd className='ml-2'>
+                  {`f / ${exifData[photo.id]?.aperture || "Loading..."}`}
+                </dd>
+              </dl>
+              <dl className='flex items-center'>
+                <dt>Iso</dt>
+                <dd className='ml-2'>
+                  {exifData[photo.id]?.iso || "Loading..."}
+                </dd>
+              </dl>
             </dd>
           </dl>
         ))}
