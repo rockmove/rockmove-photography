@@ -4,6 +4,8 @@ import React from "react";
 import NextImage from "next/image"; // next/imageを別名でインポート
 import { useEffect, useState } from "react";
 import EXIF from "exif-js";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 
 type Photo = {
   id: string;
@@ -107,30 +109,42 @@ const PhotoList = () => {
   };
 
   return (
-    <div className='p-4'>
-      <div>
-        <p>ジャンルで絞り込み:</p>
-        {uniqueGenres.map((genre) => {
-          // それぞれのgenreに対応するphoto.idを取り出す
-          const photoId = genreWithIds.find((item) => item.genre === genre)?.id;
+    <>
+      <div className='flex flex-col justify-center container mx-auto space-y-6 mb-10'>
+        <p className='text-center text-slate-500'>ジャンルで絞り込み</p>
+        <ul className='flex justify-center flex-wrap space-x-7'>
+          {uniqueGenres.map((genre) => {
+            // それぞれのgenreに対応するphoto.idを取り出す
+            const photoId = genreWithIds.find(
+              (item) => item.genre === genre
+            )?.id;
 
-          return (
-            <label key={`${genre}-${photoId}`}>
-              <input
-                type='checkbox'
-                checked={selectedGenres.includes(genre)}
-                onChange={() => handleCheckboxChange(genre)}
-              />
-              {genre}
-            </label>
-          );
-        })}
+            return (
+              <li className='flex mb-3' key={`${genre}-${photoId}`}>
+                <Checkbox
+                  id={genre}
+                  className='w-6 h-6 border-slate-300 cursor-pointer'
+                  checked={selectedGenres.includes(genre)}
+                  onCheckedChange={() => handleCheckboxChange(genre)}
+                />
+                <label
+                  className='cursor-pointer pl-2 text-slate-500 md:text-xl'
+                  htmlFor={genre}
+                >
+                  {genre}
+                </label>
+              </li>
+            );
+          })}
+        </ul>
+        <p className='flex justify-center items-center'>
+          <Button variant='search' onClick={handleClearFilters}>
+            全表示（絞り込みクリア）
+          </Button>
+        </p>
       </div>
-      <p>
-        <button onClick={handleClearFilters}>全表示（絞り込みクリア）</button>
-      </p>
 
-      <div className='columns-4 gap-4'>
+      <div className='columns-4 gap-4 px-4'>
         {filteredPhotos.map((photo) => (
           <div key={photo.id} className='break-inside-avoid'>
             <NextImage
@@ -159,7 +173,7 @@ const PhotoList = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
