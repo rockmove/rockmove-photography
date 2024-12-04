@@ -44,10 +44,11 @@ const PhotoList = () => {
   }, []);
 
   useEffect(() => {
-    // 選択されたジャンルで写真を絞り込む
-    const updatedPhotos = photoList.filter((photo) =>
-      selectedGenres.length ? selectedGenres.includes(photo.genre) : true
-    );
+    const updatedPhotos = photoList.filter((photo) => {
+      // genreが配列の場合に処理を変更
+      const genre = Array.isArray(photo.genre) ? photo.genre[0] : photo.genre;
+      return selectedGenres.length ? selectedGenres.includes(genre) : true;
+    });
     setFilteredPhotos(updatedPhotos);
   }, [selectedGenres, photoList]);
 
@@ -92,15 +93,14 @@ const PhotoList = () => {
 
   // 重複を排除
   const uniqueGenres = Array.from(
-    new Set(genreWithIds.map((item) => item.genre))
+    new Set(photoList.flatMap((photo) => photo.genre))
   );
 
   const handleCheckboxChange = (genre: string) => {
-    setSelectedGenres((prevGenres) =>
-      prevGenres.includes(genre)
-        ? prevGenres.filter((g) => g !== genre)
-        : [...prevGenres, genre]
-    );
+    const updatedGenres = selectedGenres.includes(genre)
+      ? selectedGenres.filter((g) => g !== genre)
+      : [...selectedGenres, genre];
+    setSelectedGenres(updatedGenres);
   };
 
   // 状態をリセットする関数
