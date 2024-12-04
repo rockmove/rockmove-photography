@@ -144,33 +144,42 @@ const PhotoList = () => {
         </p>
       </div>
 
-      <div className='columns-4 gap-4 px-4'>
+      <div className='px-2 columns-1 gap-0 space-y-3 md:columns-3 md:gap-3 md:space-y-3 md:px-2 lg:columns-4 lg:gap-4 lg:space-y-4 lg:px-4'>
         {filteredPhotos.map((photo) => (
-          <div key={photo.id} className='break-inside-avoid'>
-            <NextImage
-              className='w-full'
-              src={photo.image.url}
-              alt='description'
-              width={photo.image.width}
-              height={photo.image.height}
-              onLoadingComplete={() => fetchExifData(photo)} // Exif情報取得
-            />
-            <p>Genre: {photo.genre}</p>
-            <p>Width: {photo.image.width}</p>
-            <p>Height: {photo.image.height}</p>
-            <p>CameraMake: {exifData[photo.id]?.cameraMake || "Loading..."}</p>
-            <p>
-              CameraModel: {exifData[photo.id]?.cameraModel || "Loading..."}
-            </p>
-            <p>
-              ExposureTime: {exifData[photo.id]?.exposureTime || "Loading..."}
-            </p>
-            <p>
-              FocalLength: {exifData[photo.id]?.focalLength || "Loading..."}
-            </p>
-            <p>Aperture: {exifData[photo.id]?.aperture || "Loading..."}</p>
-            <p>Iso: {exifData[photo.id]?.iso || "Loading..."}</p>
-          </div>
+          <dl
+            key={photo.id}
+            className='border border-gray-200 shadow-md rounded-md break-inside-avoid'
+          >
+            <dt>
+              <NextImage
+                className='w-full rounded-t-md'
+                src={photo.image.url}
+                alt='description'
+                width={photo.image.width}
+                height={photo.image.height}
+                onLoadingComplete={() => fetchExifData(photo)} // Exif情報取得
+              />
+            </dt>
+            <dd className='p-4'>
+              <p>Genre: {photo.genre}</p>
+              <p>Width: {photo.image.width}</p>
+              <p>Height: {photo.image.height}</p>
+              <p>
+                CameraMake: {exifData[photo.id]?.cameraMake || "Loading..."}
+              </p>
+              <p>
+                CameraModel: {exifData[photo.id]?.cameraModel || "Loading..."}
+              </p>
+              <p>
+                ExposureTime: {exifData[photo.id]?.exposureTime || "Loading..."}
+              </p>
+              <p>
+                FocalLength: {exifData[photo.id]?.focalLength || "Loading..."}
+              </p>
+              <p>Aperture: {exifData[photo.id]?.aperture || "Loading..."}</p>
+              <p>Iso: {exifData[photo.id]?.iso || "Loading..."}</p>
+            </dd>
+          </dl>
         ))}
       </div>
     </>
