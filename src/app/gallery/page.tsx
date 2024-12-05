@@ -1,11 +1,14 @@
-import { IconLogo } from "@/components/Icon";
+import Header from "@/components/Header";
 import PhotoList from "@/components/PhotoList";
 import React from "react";
 
 export default function Gallery() {
   return (
-    <div className='mt-5'>
-      <PhotoList />
-    </div>
+    <>
+      <Header isInView={false} />
+      <div className='mt-20'>
+        <PhotoList />
+      </div>
+    </>
   );
 }
