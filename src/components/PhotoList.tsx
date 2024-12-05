@@ -6,7 +6,13 @@ import { useEffect, useState } from "react";
 import EXIF from "exif-js";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { IconApature, IconCamera, IconExposure, IconLength } from "./Icon";
+import {
+  IconApeture,
+  IconCamera,
+  IconExposure,
+  IconIso,
+  IconLength,
+} from "./Icon";
 
 type Photo = {
   id: string;
@@ -174,7 +180,7 @@ const PhotoList = () => {
               </dl>
               <dl className='flex items-center'>
                 <dt>
-                  <IconExposure size={26} color='black' label='Exposure' />
+                  <IconExposure color='black' label='Exposure' />
                 </dt>
                 <dd className='ml-2'>
                   {`${exifData[photo.id]?.exposureTime || "Loading..."} sec`}
@@ -190,14 +196,16 @@ const PhotoList = () => {
               </dl>
               <dl className='flex items-center'>
                 <dt>
-                  <IconApature color='black' label='Apature' />
+                  <IconApeture color='black' label='Apature' />
                 </dt>
                 <dd className='ml-2'>
                   {`f / ${exifData[photo.id]?.aperture || "Loading..."}`}
                 </dd>
               </dl>
               <dl className='flex items-center'>
-                <dt>Iso</dt>
+                <dt>
+                  <IconIso color='black' label='iso' size={24} />
+                </dt>
                 <dd className='ml-2'>
                   {exifData[photo.id]?.iso || "Loading..."}
                 </dd>
