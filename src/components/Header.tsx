@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { IconLogo } from "./Icon";
+import SlideMenu from "./SlideMenu";
 
 interface HeaderProps {
   isInView: boolean; // 監視対象の要素がビューポート内かどうか
@@ -35,7 +36,7 @@ const Header = ({ isInView }: HeaderProps) => {
           />
         </li>
         <li>
-          <p>ここにメニューとか配置</p>
+          <SlideMenu />
         </li>
       </ul>
     </header>

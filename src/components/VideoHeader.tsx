@@ -1,5 +1,6 @@
 "use client";
 
+import { div } from "framer-motion/client";
 import React, { useEffect, useRef } from "react";
 
 interface MovieSectionProps {
@@ -31,16 +32,19 @@ const VideoHeader = ({ setIsInView }: MovieSectionProps) => {
   }, [setIsInView]);
 
   return (
-    <div ref={targetRef} className='relative w-full h-screen overflow-hidden'>
-      <video
-        src='/20240217_am_dm3p_hd.mp4'
-        autoPlay
-        loop
-        muted
-        playsInline
-        className='js-observed absolute top-0 left-0 w-full h-full object-cover object-center'
-      ></video>
-    </div>
+    <>
+      <div className='sticky top-0 w-full min-h-screen'>
+        <video
+          src='/20240217_am_dm3p_hd.mp4'
+          autoPlay
+          loop
+          muted
+          playsInline
+          className='absolute w-full h-full object-cover object-center'
+        ></video>
+      </div>
+      <div ref={targetRef}></div>
+    </>
   );
 };
 
