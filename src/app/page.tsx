@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import TextBox from "@/components/TextBox";
 import VideoHeader from "@/components/VideoHeader";
+import TopDescription from "@/components/TopDescription";
 
 export default function Home() {
   const [isInView, setIsInView] = useState(false); // 要素がビューポート内かどうか
@@ -54,8 +55,8 @@ export default function Home() {
     <div className='relative'>
       <Header isInView={isInView} />
       <VideoHeader setIsInView={setIsInView} />
-      <section className='js-observed sticky top-0 bg-slate-400 flex justify-center items-center min-h-screen text-white text-8xl'>
-        コンテンツ１
+      <section className='js-observed sticky top-0 flex justify-center items-center min-h-screen bg-white'>
+        <TopDescription />
       </section>
       <section className='js-observed sticky top-0 bg-slate-500 flex justify-center items-center min-h-screen text-white text-8xl'>
         コンテンツ２
