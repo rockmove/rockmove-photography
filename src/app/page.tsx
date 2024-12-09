@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import TextBox from "@/components/TextBox";
 import VideoHeader from "@/components/VideoHeader";
 import TopDescription from "@/components/TopDescription";
+import Profile from "@/components/Profile";
 
 export default function Home() {
   const [isInView, setIsInView] = useState(false); // 要素がビューポート内かどうか
@@ -52,24 +53,18 @@ export default function Home() {
   }, []);
 
   return (
-    <div className='relative'>
+    <>
       <Header isInView={isInView} />
       <VideoHeader setIsInView={setIsInView} />
-      <section className='js-observed sticky top-0 flex justify-center items-center min-h-screen bg-white'>
+      <section className='js-observed sticky top-0 bg-white flex justify-center items-center min-h-screen'>
         <TopDescription />
       </section>
-      <section className='js-observed sticky top-0 bg-slate-500 flex justify-center items-center min-h-screen text-white text-8xl'>
-        コンテンツ２
+      <section className='js-observed sticky top-0 bg-slate-500 flex justify-center items-center min-h-screen text-white text-7xl'>
+        ここにはピックアップコンテンツが入る
       </section>
-      <section className='js-observed sticky top-0 bg-slate-600 flex justify-center items-center min-h-screen text-white text-8xl'>
-        コンテンツ３
+      <section className='js-observed sticky top-0 bg-white flex justify-center items-center min-h-screen'>
+        <Profile />
       </section>
-      <section className='js-observed sticky top-0 bg-slate-700 flex justify-center items-center min-h-screen text-white text-8xl'>
-        コンテンツ４
-      </section>
-      <section className='js-observed sticky top-0 bg-slate-800 flex justify-center items-center min-h-screen text-white text-8xl'>
-        コンテンツ５
-      </section>
-    </div>
+    </>
   );
 }

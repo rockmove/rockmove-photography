@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className='flex justify-center items-center h-screen bg-[#c6bdb5]'>
-      <p>ここにコピーライトとか書きます。</p>
+    <footer className='sticky top-0 flex justify-center items-center min-h-screen bg-[#c6bdb5] mb-0'>
+      <div>ここにFooterの内容を書きます。</div>
     </footer>
   );
 };

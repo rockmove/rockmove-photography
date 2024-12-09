@@ -15,8 +15,10 @@ export default function RootLayout({
   return (
     <html lang='ja'>
       <body>
-        {children}
-        <Footer />
+        <div className='relative'>
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

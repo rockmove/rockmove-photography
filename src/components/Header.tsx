@@ -24,7 +24,7 @@ const Header = ({ isInView }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full px-10 py-5 z-50 ${bgClass} transition-all`}
+      className={`fixed top-0 left-0 w-full px-10 py-5 z-50 transition-all`}
     >
       <ul className='flex justify-between items-center'>
         <li>
