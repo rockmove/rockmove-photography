@@ -4,6 +4,15 @@ import React from "react";
 import NextImage from "next/image"; // next/imageを別名でインポート
 import { useEffect, useState } from "react";
 import EXIF from "exif-js";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
+import {
+  IconApeture,
+  IconCamera,
+  IconExposure,
+  IconIso,
+  IconLength,
+} from "./Icon";
 
 type Photo = {
   id: string;
@@ -42,10 +51,11 @@ const PhotoList = () => {
   }, []);
 
   useEffect(() => {
-    // 選択されたジャンルで写真を絞り込む
-    const updatedPhotos = photoList.filter((photo) =>
-      selectedGenres.length ? selectedGenres.includes(photo.genre) : true
-    );
+    const updatedPhotos = photoList.filter((photo) => {
+      // genreが配列の場合に処理を変更
+      const genre = Array.isArray(photo.genre) ? photo.genre[0] : photo.genre;
+      return selectedGenres.length ? selectedGenres.includes(genre) : true;
+    });
     setFilteredPhotos(updatedPhotos);
   }, [selectedGenres, photoList]);
 
@@ -90,15 +100,14 @@ const PhotoList = () => {
 
   // 重複を排除
   const uniqueGenres = Array.from(
-    new Set(genreWithIds.map((item) => item.genre))
+    new Set(photoList.flatMap((photo) => photo.genre))
   );
 
   const handleCheckboxChange = (genre: string) => {
-    setSelectedGenres((prevGenres) =>
-      prevGenres.includes(genre)
-        ? prevGenres.filter((g) => g !== genre)
-        : [...prevGenres, genre]
-    );
+    const updatedGenres = selectedGenres.includes(genre)
+      ? selectedGenres.filter((g) => g !== genre)
+      : [...selectedGenres, genre];
+    setSelectedGenres(updatedGenres);
   };
 
   // 状態をリセットする関数
@@ -107,59 +116,105 @@ const PhotoList = () => {
   };
 
   return (
-    <div className='p-4'>
-      <div>
-        <p>ジャンルで絞り込み:</p>
-        {uniqueGenres.map((genre) => {
-          // それぞれのgenreに対応するphoto.idを取り出す
-          const photoId = genreWithIds.find((item) => item.genre === genre)?.id;
+    <>
+      <div className='flex flex-col justify-center container mx-auto space-y-6 mb-10'>
+        <p className='text-center text-slate-500'>ジャンルで絞り込み</p>
+        <ul className='flex justify-center flex-wrap space-x-7'>
+          {uniqueGenres.map((genre) => {
+            // それぞれのgenreに対応するphoto.idを取り出す
+            const photoId = genreWithIds.find(
+              (item) => item.genre === genre
+            )?.id;
 
-          return (
-            <label key={`${genre}-${photoId}`}>
-              <input
-                type='checkbox'
-                checked={selectedGenres.includes(genre)}
-                onChange={() => handleCheckboxChange(genre)}
-              />
-              {genre}
-            </label>
-          );
-        })}
+            return (
+              <li className='flex mb-3' key={`${genre}-${photoId}`}>
+                <Checkbox
+                  id={genre}
+                  className='w-6 h-6 border-slate-300 cursor-pointer'
+                  checked={selectedGenres.includes(genre)}
+                  onCheckedChange={() => handleCheckboxChange(genre)}
+                />
+                <label
+                  className='cursor-pointer pl-2 text-slate-500 md:text-xl'
+                  htmlFor={genre}
+                >
+                  {genre}
+                </label>
+              </li>
+            );
+          })}
+        </ul>
+        <p className='flex justify-center items-center'>
+          <Button variant='search' onClick={handleClearFilters}>
+            全表示（絞り込みクリア）
+          </Button>
+        </p>
       </div>
-      <p>
-        <button onClick={handleClearFilters}>全表示（絞り込みクリア）</button>
-      </p>
 
-      <div className='columns-4 gap-4'>
+      <div className='px-2 columns-1 gap-0 space-y-3 md:columns-3 md:gap-3 md:space-y-3 md:px-2 lg:columns-4 lg:gap-4 lg:space-y-4 lg:px-4'>
         {filteredPhotos.map((photo) => (
-          <div key={photo.id} className='break-inside-avoid'>
-            <NextImage
-              className='w-full'
-              src={photo.image.url}
-              alt='description'
-              width={photo.image.width}
-              height={photo.image.height}
-              onLoadingComplete={() => fetchExifData(photo)} // Exif情報取得
-            />
-            <p>Genre: {photo.genre}</p>
-            <p>Width: {photo.image.width}</p>
-            <p>Height: {photo.image.height}</p>
-            <p>CameraMake: {exifData[photo.id]?.cameraMake || "Loading..."}</p>
-            <p>
-              CameraModel: {exifData[photo.id]?.cameraModel || "Loading..."}
-            </p>
-            <p>
-              ExposureTime: {exifData[photo.id]?.exposureTime || "Loading..."}
-            </p>
-            <p>
-              FocalLength: {exifData[photo.id]?.focalLength || "Loading..."}
-            </p>
-            <p>Aperture: {exifData[photo.id]?.aperture || "Loading..."}</p>
-            <p>Iso: {exifData[photo.id]?.iso || "Loading..."}</p>
-          </div>
+          <dl
+            key={photo.id}
+            className='border border-gray-200 shadow-md rounded-md break-inside-avoid'
+          >
+            <dt>
+              <NextImage
+                className='w-full rounded-t-md'
+                src={photo.image.url}
+                alt='description'
+                width={photo.image.width}
+                height={photo.image.height}
+                onLoadingComplete={() => fetchExifData(photo)} // Exif情報取得
+              />
+            </dt>
+            <dd className='p-4 space-y-1'>
+              <dl className='flex items-center'>
+                <dt>
+                  <IconCamera color='black' label='Camera Maker' />
+                </dt>
+                <dd className='ml-2'>
+                  {`${exifData[photo.id]?.cameraMake || "Loading..."} / ${
+                    exifData[photo.id]?.cameraModel || "Loading..."
+                  }`}
+                </dd>
+              </dl>
+              <dl className='flex items-center'>
+                <dt>
+                  <IconExposure color='black' label='Exposure' />
+                </dt>
+                <dd className='ml-2'>
+                  {`${exifData[photo.id]?.exposureTime || "Loading..."} sec`}
+                </dd>
+              </dl>
+              <dl className='flex items-center'>
+                <dt>
+                  <IconLength color='black' label='Focal Length' />
+                </dt>
+                <dd className='ml-2'>
+                  {`${exifData[photo.id]?.focalLength || "Loading..."} mm`}
+                </dd>
+              </dl>
+              <dl className='flex items-center'>
+                <dt>
+                  <IconApeture color='black' label='Apature' />
+                </dt>
+                <dd className='ml-2'>
+                  {`f / ${exifData[photo.id]?.aperture || "Loading..."}`}
+                </dd>
+              </dl>
+              <dl className='flex items-center'>
+                <dt>
+                  <IconIso color='black' label='iso' size={24} />
+                </dt>
+                <dd className='ml-2'>
+                  {exifData[photo.id]?.iso || "Loading..."}
+                </dd>
+              </dl>
+            </dd>
+          </dl>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
