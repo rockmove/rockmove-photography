@@ -65,9 +65,6 @@ const SlideMenu = () => {
               お問い合わせ
             </li>
           </ul>
-          {/* <div className='absolute top-5 right-5'>
-            <Button onClick={toggleMenu}>閉じる</Button>
-          </div> */}
         </div>
       </div>
 
