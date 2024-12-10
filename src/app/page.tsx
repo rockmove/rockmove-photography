@@ -15,7 +15,7 @@ export default function Home() {
     const options = {
       root: null, // ビューポートを基準に
       rootMargin: "0px",
-      threshold: 0.3, // 30%が表示されたタイミングで反応
+      threshold: 0.5, // 30%が表示されたタイミングで反応
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -56,13 +56,13 @@ export default function Home() {
     <>
       <Header isInView={isInView} />
       <VideoHeader setIsInView={setIsInView} />
-      <section className='js-observed sticky top-0 bg-white flex justify-center items-center min-h-screen'>
+      <section className='js-observed sticky top-0 bg-[#faf7ee] flex justify-center items-center min-h-screen'>
         <TopDescription />
       </section>
-      <section className='js-observed sticky top-0 bg-slate-500 flex justify-center items-center min-h-screen text-white text-7xl'>
+      <section className='js-observed sticky top-0 bg-white flex justify-center items-center min-h-screen text-black text-7xl'>
         ここにはピックアップコンテンツが入る
       </section>
-      <section className='js-observed sticky top-0 bg-white flex justify-center items-center min-h-screen'>
+      <section className='js-observed sticky top-0 bg-[#faf7ee] flex justify-center items-center min-h-screen'>
         <Profile />
       </section>
     </>
