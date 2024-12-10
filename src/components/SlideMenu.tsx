@@ -33,11 +33,13 @@ const SlideMenu = () => {
   return (
     <>
       {/* メニューを開くボタン */}
-      <Button onClick={toggleMenu}>メニュー</Button>
+      <Button onClick={toggleMenu} className='relative z-50'>
+        {isOpen ? "CLOSE" : "OPEN"}
+      </Button>
 
       {/* メニュー */}
       <div
-        className={`fixed top-0 right-0 w-[27rem] h-full bg-[#c6bdb5] text-white z-50 transition-all
+        className={`fixed top-0 right-0 w-[27rem] h-full bg-[#c6bdb5] text-white z-20 transition-all
           ${
             isOpen
               ? "opacity-100 translate-x-0 duration-300 ease-out pointer-events-auto" // 開くときのアニメーション: 速さと滑らかさ
@@ -63,16 +65,16 @@ const SlideMenu = () => {
               お問い合わせ
             </li>
           </ul>
-          <div className='absolute top-5 right-5'>
+          {/* <div className='absolute top-5 right-5'>
             <Button onClick={toggleMenu}>閉じる</Button>
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* メニュー背景を暗くするオーバーレイ */}
       {isOpen && (
         <div
-          className='fixed inset-0 bg-gray-500 opacity-60 z-40'
+          className='fixed inset-0 bg-gray-500 opacity-60 z-10'
           onClick={toggleMenu} // オーバーレイをクリックしてメニューを閉じる
         />
       )}
