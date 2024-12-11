@@ -9,6 +9,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { IconSwiperLeft, IconSwiperRight } from "./Icon";
 
 const notoSerifJP = Noto_Serif_JP({
   weight: ["200", "400", "700"],
@@ -44,19 +45,12 @@ const PickUp = () => {
     fetchPhotoList();
   }, []);
   return (
-    // <div className='w-full h-full grid grid-cols-4 grid-rows-3 gap-4" p-10'>
-    //   {photoList
-    //     .filter((photo) => photo.pickup)
-    //     .map((photo) => (
-    //       <PhotoDetail key={photo.id} photo={photo} />
-    //     ))}
-    // </div>
     <div className='w-full'>
       <dl className='grid grid-cols-[1fr_2fr]'>
         <dt className='flex flex-col justify-center items-center p-10'>
           <h2 className={`${dmSerifText.className} text-5xl mb-5`}>PICKUP</h2>
-          <div className={`${notoSerifJP.className} text-2xl`}>
-            こちらにピックアップが表示されます。御覧ください。
+          <div className={`${notoSerifJP.className} text-xl`}>
+            注目の写真をトップページでお届けします。選りすぐりの風景写真たちが、この場所に特別な雰囲気をもたらしています。それぞれの写真が持つ美しさや魅力をぜひご覧いただき、お気に入りの一枚を見つけてください。
           </div>
         </dt>
         <dd className='h-screen'>
@@ -67,8 +61,8 @@ const PickUp = () => {
             speed={400}
             autoplay={false}
             navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
+              nextEl: ".swiper-arrowButton-next",
+              prevEl: ".swiper-arrowButton-prev",
             }}
             className='h-screen'
           >
@@ -85,8 +79,12 @@ const PickUp = () => {
                   />
                 </SwiperSlide>
               ))}
-            <div className='swiper-button-next'></div>
-            <div className='swiper-button-prev'></div>
+            <div className='swiper-arrowButton-next absolute top-1/2 transform -translate-y-1/2 right-4 cursor-pointer z-10'>
+              <IconSwiperRight color='#fff' label='arrow' size={60} />
+            </div>
+            <div className='swiper-arrowButton-prev absolute top-1/2 transform -translate-y-1/2 left-4 cursor-pointer z-10'>
+              <IconSwiperLeft color='#fff' label='arrow' size={60} />
+            </div>
           </Swiper>
         </dd>
       </dl>
