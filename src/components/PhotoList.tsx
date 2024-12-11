@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useEffect, useState } from "react";
-import EXIF from "exif-js";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import PhotoDetail from "./PhotoDetail";
@@ -16,15 +15,6 @@ type Photo = {
   };
   genre: string;
   pickup: boolean;
-};
-
-type ExifData = {
-  cameraMake: string;
-  cameraModel: string;
-  exposureTime: string;
-  focalLength: string;
-  aperture: string;
-  iso: string;
 };
 
 const PhotoList = () => {

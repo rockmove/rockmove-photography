@@ -6,6 +6,7 @@ import TextBox from "@/components/TextBox";
 import VideoHeader from "@/components/VideoHeader";
 import TopDescription from "@/components/TopDescription";
 import Profile from "@/components/Profile";
+import PickUp from "@/components/PickUp";
 
 export default function Home() {
   const [isInView, setIsInView] = useState(false); // 要素がビューポート内かどうか
@@ -59,8 +60,8 @@ export default function Home() {
       <section className='js-observed sticky top-0 bg-white flex justify-center items-center min-h-screen'>
         <TopDescription />
       </section>
-      <section className='js-observed sticky top-0 bg-white flex justify-center items-center min-h-screen text-black text-7xl'>
-        ここにはピックアップコンテンツが入る
+      <section className='js-observed sticky top-0 bg-white flex justify-center items-center min-h-screen'>
+        <PickUp />
       </section>
       <section className='js-observed sticky top-0 bg-white flex justify-center items-center min-h-screen'>
         <Profile />

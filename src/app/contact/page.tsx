@@ -1,68 +1,79 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import NextImage from "next/image"; // next/imageを別名でインポート
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+type Photo = {
+  id: string;
+  image: {
+    url: string;
+    width: number;
+    height: number;
+  };
+  genre: string;
+  pickup: boolean;
+};
 
 export default function Contact() {
+  const [photoList, setPhotoList] = useState<Photo[]>([]);
+
   useEffect(() => {
-    // IntersectionObserverの設定
-    const options = {
-      root: null, // ビューポートを基準に
-      rootMargin: "0px",
-      threshold: 0.3, // 30%が表示されたタイミングで反応
+    const fetchPhotoList = async () => {
+      const res = await fetch("/api/photolist");
+      const data = await res.json();
+      setPhotoList(data.contents);
     };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const currentSection = entry.target;
-        const previousSection = currentSection.previousElementSibling;
-
-        // 次の要素がビューポートに30%〜50%入ったとき
-        if (entry.isIntersecting) {
-          // 前のセクションにブラーを適用
-          if (previousSection) {
-            previousSection.classList.add("blur-sm");
-          }
-        } else {
-          // セクションがビューポートから外れたとき
-          if (previousSection) {
-            previousSection.classList.remove("blur-sm");
-          }
-        }
-      });
-    }, options);
-
-    // 各セクションに対して監視を開始
-    const sections = document.querySelectorAll(".js-observed");
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    // クリーンアップ
-    return () => {
-      sections.forEach((section) => {
-        observer.unobserve(section);
-      });
-    };
+    fetchPhotoList();
   }, []);
-
   return (
     <>
-      <div className='relative'>
-        <section className='js-observed sticky top-0 bg-slate-400 flex justify-center items-center min-h-screen text-white text-8xl'>
-          コンテンツ１
-        </section>
-        <section className='js-observed sticky top-0 bg-slate-500 flex justify-center items-center min-h-screen text-white text-8xl'>
-          コンテンツ２
-        </section>
-        <section className='js-observed sticky top-0 bg-slate-600 flex justify-center items-center min-h-screen text-white text-8xl'>
-          コンテンツ３
-        </section>
-        <section className='js-observed sticky top-0 bg-slate-700 flex justify-center items-center min-h-screen text-white text-8xl'>
-          コンテンツ４
-        </section>
-        <section className='js-observed sticky top-0 bg-slate-800 flex justify-center items-center min-h-screen text-white text-8xl'>
-          コンテンツ５
-        </section>
+      <div className='h-screen flex justify-center items-center'>
+        <div className='w-1/2 h-auto bg-slate-500'>
+          {/* <p>
+            <NextImage
+              className='h-full object-cover'
+              src='/profile.jpg'
+              alt='profile'
+              width={2048}
+              height={1360}
+            />
+          </p> */}
+          <div>
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              loop={true}
+              slidesPerView={"auto"}
+              speed={400}
+              autoplay={false}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+            >
+              {photoList
+                .filter((photo) => photo.pickup)
+                .map((photo) => (
+                  <SwiperSlide key={photo.id}>
+                    <NextImage
+                      className='w-full'
+                      src={photo.image.url}
+                      alt='description'
+                      width={photo.image.width}
+                      height={photo.image.height}
+                    />
+                  </SwiperSlide>
+                ))}
+              <div className='swiper-button-next'></div>
+              <div className='swiper-button-prev'></div>
+            </Swiper>
+          </div>
+        </div>
       </div>
     </>
   );
