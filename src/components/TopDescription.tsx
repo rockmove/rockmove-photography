@@ -18,7 +18,7 @@ const TopDescription = () => {
     <div className='w-full'>
       <dl className='grid grid-cols-[1fr_2fr]'>
         <dt className='flex flex-col justify-center items-center p-10'>
-          <h2 className={`${dmSerifText.className} text-6xl mb-5`}>
+          <h2 className={`${dmSerifText.className} text-5xl mb-5`}>
             Whispers of Nature
           </h2>
           <div className={`${notoSerifJP.className} text-2xl`}>
