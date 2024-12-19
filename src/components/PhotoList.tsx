@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import PhotoDetail from "./PhotoDetail";
+import PhotoDialog from "./PhotoDialog";
 
 type Photo = {
   id: string;
@@ -105,6 +106,7 @@ const PhotoList = () => {
           <PhotoDetail key={photo.id} photo={photo} />
         ))}
       </div>
+      <PhotoDialog />
     </>
   );
 };
