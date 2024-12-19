@@ -22,10 +22,16 @@ const PhotoList = () => {
   const [photoList, setPhotoList] = useState<Photo[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]); // 選択されたジャンル
   const [filteredPhotos, setFilteredPhotos] = useState<Photo[]>([]); // 絞り込んだ写真リスト
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchPhotoList = async () => {
-      const res = await fetch("/api/photolist");
+      const res = await fetch(
+        "/api/photolist?cache=false", // またはキャッシュを無効化するオプション
+        { cache: "no-store" } // Fetch APIのキャッシュ制御
+      );
       const data = await res.json();
       setPhotoList(data.contents);
       setFilteredPhotos(data.contents); // 初期値としてすべての写真を表示
@@ -102,11 +108,22 @@ const PhotoList = () => {
       </div>
 
       <div className='px-2 columns-1 gap-0 space-y-3 md:columns-3 md:gap-3 md:space-y-3 md:px-2 lg:columns-4 lg:gap-4 lg:space-y-4 lg:px-4'>
-        {filteredPhotos.map((photo) => (
-          <PhotoDetail key={photo.id} photo={photo} />
+        {filteredPhotos.map((photo, index) => (
+          <PhotoDetail
+            key={photo.id}
+            photo={photo}
+            onPhotoClick={() => setSelectedPhotoIndex(index)}
+          />
         ))}
       </div>
-      <PhotoDialog />
+
+      {selectedPhotoIndex !== null && (
+        <PhotoDialog
+          photos={filteredPhotos}
+          selectedPhotoIndex={selectedPhotoIndex}
+          onClose={() => setSelectedPhotoIndex(null)}
+        />
+      )}
     </>
   );
 };

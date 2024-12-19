@@ -32,9 +32,10 @@ type ExifData = {
 
 type PhotoDetailProps = {
   photo: Photo;
+  onPhotoClick: () => void;
 };
 
-const PhotoDetail = ({ photo }: PhotoDetailProps) => {
+const PhotoDetail = ({ photo, onPhotoClick }: PhotoDetailProps) => {
   const [exifData, setExifData] = useState<Record<string, ExifData>>({});
 
   const fetchExifData = (photo: Photo) => {
@@ -73,8 +74,9 @@ const PhotoDetail = ({ photo }: PhotoDetailProps) => {
   return (
     <>
       <dl
+        onClick={onPhotoClick}
         key={photo.id}
-        className='border border-gray-200 shadow-md rounded-md break-inside-avoid'
+        className='border border-gray-200 shadow-md rounded-md break-inside-avoid cursor-pointer'
       >
         <dt>
           <NextImage
