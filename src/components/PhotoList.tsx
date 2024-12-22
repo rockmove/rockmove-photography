@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { cache } from "react";
 import { useEffect, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -28,13 +28,17 @@ const PhotoList = () => {
 
   useEffect(() => {
     const fetchPhotoList = async () => {
-      const res = await fetch(
-        "/api/photolist?cache=false", // またはキャッシュを無効化するオプション
-        { cache: "no-store" } // Fetch APIのキャッシュ制御
-      );
-      const data = await res.json();
-      setPhotoList(data.contents);
-      setFilteredPhotos(data.contents); // 初期値としてすべての写真を表示
+      try {
+        const res = await fetch("/api/photolist");
+        if (!res.ok) {
+          throw new Error("Failed to fetch photo list");
+        }
+        const data = await res.json();
+        setPhotoList(data.contents);
+        setFilteredPhotos(data.contents); // 初期値としてすべての写真を表示
+      } catch (err) {
+        console.error("Error fetching photo list:", err);
+      }
     };
     fetchPhotoList();
   }, []);

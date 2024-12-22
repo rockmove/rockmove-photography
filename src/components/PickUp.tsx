@@ -38,9 +38,16 @@ const PickUp = () => {
 
   useEffect(() => {
     const fetchPhotoList = async () => {
-      const res = await fetch("/api/photolist");
-      const data = await res.json();
-      setPhotoList(data.contents);
+      try {
+        const res = await fetch("/api/photolist");
+        if (!res.ok) {
+          throw new Error("Failed to fetch photo list");
+        }
+        const data = await res.json();
+        setPhotoList(data.contents);
+      } catch (err) {
+        console.error("Error fetching photo list:", err);
+      }
     };
     fetchPhotoList();
   }, []);
