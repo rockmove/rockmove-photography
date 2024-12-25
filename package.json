@@ -19,6 +19,7 @@
     "lucide-react": "^0.464.0",
     "microcms-js-sdk": "^3.1.2",
     "next": "14.2.18",
+    "ngrok": "^5.0.0-beta.2",
     "react": "^18",
     "react-dom": "^18",
     "swiper": "^11.1.15",
