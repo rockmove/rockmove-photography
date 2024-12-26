@@ -45,10 +45,10 @@ const PhotoDialog = ({
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center'>
       {/* オーバーレイ */}
-      <div className='absolute inset-0 bg-black bg-opacity-50'></div>
-      <div className='relative bg-white border border-gray-200 shadow-md rounded-md p-8 w-[60%]'>
+      <div className='absolute inset-0 bg-black bg-opacity-70'></div>
+      <div className='relative p-8'>
         <button
-          className='absolute top-[2px] right-[2px] w-[30px] h-[30px] bg-black bg-opacity-40 rounded-full text-white hover:opacity-80'
+          className='absolute top-12 right-8 md:top-5 md:right-5 w-[50px] h-[50px] bg-black bg-opacity-40 rounded-full text-white hover:opacity-80 z-[10000]'
           onClick={onClose}
         >
           ✕
@@ -64,7 +64,7 @@ const PhotoDialog = ({
             nextEl: ".swiper-arrowButton-next",
             prevEl: ".swiper-arrowButton-prev",
           }}
-          className='h-[50vh] md:h-[85vh]'
+          className='h-screen md:h-[95vh]'
         >
           {photos.map((photo) => (
             <SwiperSlide key={photo.id}>
@@ -80,12 +80,12 @@ const PhotoDialog = ({
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className='swiper-arrowButton-next absolute top-1/2 transform -translate-y-1/2 -right-0.5 md:right-8 cursor-pointer z-10'>
+        <div className='swiper-arrowButton-next absolute top-1/2 transform -translate-y-1/2 right-2 md:right-8 cursor-pointer z-10'>
           <div className='w-[30px] h-[30px] md:w-[40px] md:h-[40px] bg-black bg-opacity-40 rounded-full flex justify-center items-center'>
             <IconSwiperRight color='#fff' label='arrow' size={40} />
           </div>
         </div>
-        <div className='swiper-arrowButton-prev absolute top-1/2 transform -translate-y-1/2 -left-0.5 md:left-8 cursor-pointer z-10'>
+        <div className='swiper-arrowButton-prev absolute top-1/2 transform -translate-y-1/2 left-2 md:left-8 cursor-pointer z-10'>
           <div className='w-[30px] h-[30px] md:w-[40px] md:h-[40px] bg-black bg-opacity-40 rounded-full flex justify-center items-center'>
             <IconSwiperLeft color='#fff' label='arrow' size={40} />
           </div>
