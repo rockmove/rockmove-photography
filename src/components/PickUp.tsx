@@ -53,14 +53,18 @@ const PickUp = () => {
   }, []);
   return (
     <div className='w-full'>
-      <dl className='grid grid-cols-[1fr_2fr]'>
+      <dl className='grid grid-flow-row md:grid-flow-col md:grid-cols-[1fr_2fr]'>
         <dt className='flex flex-col justify-center items-center p-10'>
-          <h2 className={`${dmSerifText.className} text-5xl mb-5`}>PICKUP</h2>
-          <div className={`${notoSerifJP.className} text-xl`}>
+          <h2
+            className={`${dmSerifText.className} text-3xl md:text-5xl mb-3 md:mb-5`}
+          >
+            PICKUP
+          </h2>
+          <div className={`${notoSerifJP.className} tex-xl md:text-2xl`}>
             注目の写真をトップページでお届けします。選りすぐりの風景写真たちが、この場所に特別な雰囲気をもたらしています。それぞれの写真が持つ美しさや魅力をぜひご覧いただき、お気に入りの一枚を見つけてください。
           </div>
         </dt>
-        <dd className='h-screen'>
+        <dd className='w-full h-auto md:h-screen'>
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             loop={true}
@@ -71,7 +75,7 @@ const PickUp = () => {
               nextEl: ".swiper-arrowButton-next",
               prevEl: ".swiper-arrowButton-prev",
             }}
-            className='h-screen'
+            className='w-full h-auto md:h-screen'
           >
             {photoList
               .filter((photo) => photo.pickup)

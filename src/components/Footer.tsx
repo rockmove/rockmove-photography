@@ -16,10 +16,10 @@ const dmSerifText = DM_Serif_Text({
 
 const Footer = () => {
   return (
-    <footer className='js-observed sticky top-0 flex flex-col justify-between min-h-screen bg-[#c6bdb5] mb-0 px-48 pt-52 pb-24'>
-      <ul className='flex'>
-        <li className='flex-1 px-7 border-r border-l border-gray-100'>
-          <p className='border-black'>
+    <footer className='js-observed md:sticky md:top-0 flex flex-col justify-between h-auto md:min-h-screen bg-[#c6bdb5] px-10 py-10 mb-0 md:px-48 md:pt-52 md:pb-24'>
+      <ul className='md:flex md:flex-row mb-8 md:mb-0'>
+        <li className='md:flex-1 md:px-7 md:border-r md:border-l md:border-gray-100 mb-7 md:mb-0'>
+          <p className='mb-1 md:mb-2'>
             <IconLogo
               width={280}
               height='auto'
@@ -32,10 +32,12 @@ const Footer = () => {
           </p>
         </li>
         <li
-          className={`${dmSerifText.className} flex-1 px-7 border-r border-gray-100`}
+          className={`${dmSerifText.className} md:flex-1 md:px-7 md:border-r md:border-gray-100 mb-7 md:mb-0`}
         >
-          <h2 className='mb-6 text-4xl text-white'>Sitemap</h2>
-          <ul className='space-y-3'>
+          <h2 className='mb-3 md:mb-6 text-3xl md:text-4xl text-white'>
+            Sitemap
+          </h2>
+          <ul className='space-y-2 md:space-y-3'>
             <li className='text-2xl text-white'>
               <Link href={"/"} className='hover:opacity-60'>
                 HOME
@@ -53,11 +55,13 @@ const Footer = () => {
             </li>
           </ul>
         </li>
-        <li className='flex-1 px-7 border-r border-gray-100'>
-          <h2 className={`${dmSerifText.className} mb-6 text-4xl text-white`}>
+        <li className='md:flex-1 md:px-7 md:border-r md:border-gray-100'>
+          <h2
+            className={`${dmSerifText.className} mb-6 text-3xl md:text-4xl text-white`}
+          >
             SNS
           </h2>
-          <ul className='space-y-5'>
+          <ul className='space-y-3 md:space-y-5'>
             <li>
               <Link
                 href={"https://x.com/rockmoveworks1"}
@@ -103,7 +107,9 @@ const Footer = () => {
           </ul>
         </li>
       </ul>
-      <p className={`${dmSerifText.className} text-center text-xl text-white`}>
+      <p
+        className={`${dmSerifText.className} text-center text-xs md:text-xl text-white`}
+      >
         &copy; 2024 RockmovePhotograpy. All Rights Reserved.
       </p>
     </footer>

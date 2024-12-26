@@ -16,8 +16,22 @@ const dmSerifText = DM_Serif_Text({
 const TopDescription = () => {
   return (
     <div className='w-full'>
-      <dl className='grid grid-cols-[2fr_1fr]'>
-        <dt className='h-screen'>
+      <dl className='grid grid-flow-row md:grid-flow-col md:grid-cols-[2fr_1fr]'>
+        <dt className='flex flex-col justify-center items-center p-10 md:order-2'>
+          <h2
+            className={`${dmSerifText.className} text-3xl md:text-5xl mb-3 md:mb-5`}
+          >
+            Whispers of Nature
+          </h2>
+          <div className={`${notoSerifJP.className} tex-xl md:text-2xl`}>
+            自然が織り成す力強い変化と繊細な美。
+            四季の流れ、水の形が静かに刻む美しさ、森が影を落とす場所。
+            その全てが、目に見えない何かが自然の息吹として感じられるひととき。
+            時の流れが紡ぎ出す、微細な光の舞、柔らかな陰影。
+            大地に降り注ぐ、瞬間の美が心に深く残る。
+          </div>
+        </dt>
+        <dd className='w-full h-auto md:h-screen md:order-1'>
           <Image
             className='h-full object-cover'
             src='/topdescription.jpg'
@@ -25,18 +39,6 @@ const TopDescription = () => {
             width={2048}
             height={1366}
           />
-        </dt>
-        <dd className='flex flex-col justify-center items-center p-10'>
-          <h2 className={`${dmSerifText.className} text-5xl mb-5`}>
-            Whispers of Nature
-          </h2>
-          <div className={`${notoSerifJP.className} text-2xl`}>
-            自然が織り成す力強い変化と繊細な美。
-            四季の流れ、水の形が静かに刻む美しさ、森が影を落とす場所。
-            その全てが、目に見えない何かが自然の息吹として感じられるひととき。
-            時の流れが紡ぎ出す、微細な光の舞、柔らかな陰影。
-            大地に降り注ぐ、瞬間の美が心に深く残る。
-          </div>
         </dd>
       </dl>
     </div>
