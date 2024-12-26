@@ -64,7 +64,7 @@ const PhotoDialog = ({
             nextEl: ".swiper-arrowButton-next",
             prevEl: ".swiper-arrowButton-prev",
           }}
-          className='h-[85vh]'
+          className='h-[50vh] md:h-[85vh]'
         >
           {photos.map((photo) => (
             <SwiperSlide key={photo.id}>
@@ -79,17 +79,17 @@ const PhotoDialog = ({
               </div>
             </SwiperSlide>
           ))}
-          <div className='swiper-arrowButton-next absolute top-1/2 transform -translate-y-1/2 right-4 cursor-pointer z-10'>
-            <div className='w-[50px] h-[50px] bg-black bg-opacity-40 rounded-full flex justify-center items-center'>
-              <IconSwiperRight color='#fff' label='arrow' size={50} />
-            </div>
-          </div>
-          <div className='swiper-arrowButton-prev absolute top-1/2 transform -translate-y-1/2 left-4 cursor-pointer z-10'>
-            <div className='w-[50px] h-[50px] bg-black bg-opacity-40 rounded-full flex justify-center items-center'>
-              <IconSwiperLeft color='#fff' label='arrow' size={50} />
-            </div>
-          </div>
         </Swiper>
+        <div className='swiper-arrowButton-next absolute top-1/2 transform -translate-y-1/2 -right-0.5 md:right-8 cursor-pointer z-10'>
+          <div className='w-[30px] h-[30px] md:w-[40px] md:h-[40px] bg-black bg-opacity-40 rounded-full flex justify-center items-center'>
+            <IconSwiperRight color='#fff' label='arrow' size={40} />
+          </div>
+        </div>
+        <div className='swiper-arrowButton-prev absolute top-1/2 transform -translate-y-1/2 -left-0.5 md:left-8 cursor-pointer z-10'>
+          <div className='w-[30px] h-[30px] md:w-[40px] md:h-[40px] bg-black bg-opacity-40 rounded-full flex justify-center items-center'>
+            <IconSwiperLeft color='#fff' label='arrow' size={40} />
+          </div>
+        </div>
       </div>
     </div>
   );
