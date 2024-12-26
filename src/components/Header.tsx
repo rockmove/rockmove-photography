@@ -24,12 +24,12 @@ const Header = ({ isInView }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full px-10 py-5 z-50 transition-all`}
+      className={`fixed top-0 left-0 w-full px-5 md:px-10 py-4 md:py-5 z-50 transition-all`}
     >
       <ul className='flex justify-between items-center'>
-        <li>
+        <li className='w-3/5 md:w-72'>
           <IconLogo
-            width={350}
+            width='100%'
             height='auto'
             color={logoColor}
             label='RockmovePhotography'
