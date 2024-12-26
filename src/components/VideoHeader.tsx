@@ -33,7 +33,7 @@ const VideoHeader = ({ setIsInView }: MovieSectionProps) => {
 
   return (
     <>
-      <div className='relative md:sticky md:top-0 w-full min-h-screen'>
+      <div className='relative lg:sticky lg:top-0 w-full min-h-screen'>
         <video
           src='/20240217_am_dm3p_hd.mp4'
           autoPlay

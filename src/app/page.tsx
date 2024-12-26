@@ -57,13 +57,13 @@ export default function Home() {
     <>
       <Header isInView={isInView} />
       <VideoHeader setIsInView={setIsInView} />
-      <section className='js-observed md:sticky md:top-0 bg-white flex justify-center items-center h-auto md:min-h-screen'>
+      <section className='js-observed lg:sticky lg:top-0 bg-white flex justify-center items-center h-auto lg:min-h-screen'>
         <TopDescription />
       </section>
-      <section className='js-observed md:sticky md:top-0 bg-white flex justify-center items-center h-auto md:min-h-screen'>
+      <section className='js-observed lg:sticky lg:top-0 bg-white flex justify-center items-center h-auto lg:min-h-screen'>
         <PickUp />
       </section>
-      <section className='js-observed md:sticky md:top-0 bg-white flex justify-center items-center h-auto md:min-h-screen'>
+      <section className='js-observed lg:sticky lg:top-0 bg-white flex justify-center items-center h-auto lg:min-h-screen'>
         <Profile />
       </section>
     </>

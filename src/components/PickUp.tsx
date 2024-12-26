@@ -53,18 +53,18 @@ const PickUp = () => {
   }, []);
   return (
     <div className='w-full'>
-      <dl className='grid grid-flow-row md:grid-flow-col md:grid-cols-[1fr_2fr]'>
+      <dl className='grid grid-flow-row lg:grid-flow-col lg:grid-cols-[1fr_2fr]'>
         <dt className='flex flex-col justify-center items-center p-10'>
           <h2
-            className={`${dmSerifText.className} text-3xl md:text-5xl mb-3 md:mb-5`}
+            className={`${dmSerifText.className} text-3xl lg:text-5xl mb-3 lg:mb-5`}
           >
             PICKUP
           </h2>
-          <div className={`${notoSerifJP.className} tex-xl md:text-2xl`}>
+          <div className={`${notoSerifJP.className} tex-xl lg:text-2xl`}>
             注目の写真をトップページでお届けします。選りすぐりの風景写真たちが、この場所に特別な雰囲気をもたらしています。それぞれの写真が持つ美しさや魅力をぜひご覧いただき、お気に入りの一枚を見つけてください。
           </div>
         </dt>
-        <dd className='w-full h-auto md:h-screen'>
+        <dd className='w-full h-auto lg:h-screen'>
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             loop={true}
@@ -75,7 +75,7 @@ const PickUp = () => {
               nextEl: ".swiper-arrowButton-next",
               prevEl: ".swiper-arrowButton-prev",
             }}
-            className='w-full h-auto md:h-screen'
+            className='w-full h-auto lg:h-screen'
           >
             {photoList
               .filter((photo) => photo.pickup)
@@ -90,13 +90,13 @@ const PickUp = () => {
                   />
                 </SwiperSlide>
               ))}
-            <div className='swiper-arrowButton-next absolute top-1/2 transform -translate-y-1/2 right-2 md:right-4 cursor-pointer z-10'>
-              <div className='w-[30px] h-[30px] md:w-[40px] md:h-[40px] bg-black bg-opacity-40 rounded-full flex justify-center items-center'>
+            <div className='swiper-arrowButton-next absolute top-1/2 transform -translate-y-1/2 right-2 lg:right-4 cursor-pointer z-10'>
+              <div className='w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] bg-black bg-opacity-40 rounded-full flex justify-center items-center'>
                 <IconSwiperRight color='#fff' label='arrow' size={40} />
               </div>
             </div>
-            <div className='swiper-arrowButton-prev absolute top-1/2 transform -translate-y-1/2 left-2 md:left-4 cursor-pointer z-10'>
-              <div className='w-[30px] h-[30px] md:w-[40px] md:h-[40px] bg-black bg-opacity-40 rounded-full flex justify-center items-center'>
+            <div className='swiper-arrowButton-prev absolute top-1/2 transform -translate-y-1/2 left-2 lg:left-4 cursor-pointer z-10'>
+              <div className='w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] bg-black bg-opacity-40 rounded-full flex justify-center items-center'>
                 <IconSwiperLeft color='#fff' label='arrow' size={40} />
               </div>
             </div>
