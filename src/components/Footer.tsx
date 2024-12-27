@@ -15,12 +15,14 @@ const Footer = () => {
       <ul className='lg:flex lg:flex-row mb-8 lg:mb-0'>
         <li className='lg:flex-1 lg:px-7 lg:border-r lg:border-l lg:border-gray-100 mb-7 lg:mb-0'>
           <p className='mb-1 lg:mb-2 w-3/5'>
-            <IconLogo
-              width='100%'
-              height='auto'
-              color='#fff'
-              label='RockmovePhotography'
-            />
+            <Link href={"/"}>
+              <IconLogo
+                width='100%'
+                height='auto'
+                color='#fff'
+                label='RockmovePhotography'
+              />
+            </Link>
           </p>
           <p className={`${dmSerifText.className} text-white`}>
             Operation by Ryuhei Hosomi
@@ -43,11 +45,7 @@ const Footer = () => {
                 GALLERY
               </Link>
             </li>
-            <li className='text-2xl text-white'>
-              <Link href={"/contact"} className='hover:opacity-60'>
-                CONTACT
-              </Link>
-            </li>
+            <li className='text-2xl text-white'>CONTACT</li>
           </ul>
         </li>
         <li className='lg:flex-1 lg:px-7 lg:border-r lg:border-gray-100'>

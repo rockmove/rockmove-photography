@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button"; // ShadCN UIのボタン
 
 import { Noto_Serif_JP } from "next/font/google";
+import Link from "next/link";
 
 const notoSerifJP = Noto_Serif_JP({
   weight: ["200", "400", "700"],
@@ -52,12 +53,16 @@ const SlideMenu = () => {
             <li
               className={`${notoSerifJP.className} border-b border-white pb-4`}
             >
-              ホーム
+              <Link href={"/"} className='block w-full'>
+                ホーム
+              </Link>
             </li>
             <li
               className={`${notoSerifJP.className} border-b border-white pb-4`}
             >
-              ギャラリー
+              <Link href={"/gallery"} className='block w-full'>
+                ギャラリー
+              </Link>
             </li>
             <li
               className={`${notoSerifJP.className} border-b border-white pb-4`}
