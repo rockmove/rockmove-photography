@@ -111,7 +111,7 @@ const PhotoList = () => {
         </p>
       </div>
 
-      <div className='px-2 columns-1 gap-0 space-y-3 md:columns-3 md:gap-3 md:space-y-3 md:px-2 lg:columns-4 lg:gap-4 lg:space-y-4 lg:px-4'>
+      <div className='px-2 pb-10 columns-1 gap-0 space-y-3 md:columns-3 md:gap-3 md:space-y-3 md:px-2 lg:columns-4 lg:gap-4 lg:space-y-4 lg:px-4'>
         {filteredPhotos.map((photo, index) => (
           <PhotoDetail
             key={photo.id}
