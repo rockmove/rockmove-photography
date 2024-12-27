@@ -44,7 +44,7 @@ const PhotoDetail = ({ photo, onPhotoClick }: PhotoDetailProps) => {
     img.src = photo.image.url;
 
     img.onload = () => {
-      EXIF.getData(img, function (this: any) {
+      EXIF.getData(img, function (this: ExifData) {
         const cameraMake = String(EXIF.getTag(this, "Make") || "N/A");
         const cameraModel = String(EXIF.getTag(this, "Model") || "N/A");
         const exposureTime = String(EXIF.getTag(this, "ExposureTime") || "N/A");

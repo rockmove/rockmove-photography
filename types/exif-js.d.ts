@@ -1,11 +1,11 @@
 declare module "exif-js" {
   export function getData(
     element: HTMLImageElement,
-    callback: (this: any) => void
+    callback: (this: ExifData) => void
   ): void;
 
   export function getTag(
-    element: any,
+    element: ExifData,
     tag: string
   ): string | number | undefined;
 }
