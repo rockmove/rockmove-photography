@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PhotoDetail from "./PhotoDetail";
 
 import { Noto_Serif_JP, DM_Serif_Text } from "next/font/google";
 import NextImage from "next/image"; // next/imageを別名でインポート

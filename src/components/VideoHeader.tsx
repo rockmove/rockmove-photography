@@ -1,6 +1,5 @@
 "use client";
 
-import { div } from "framer-motion/client";
 import React, { useEffect, useRef } from "react";
 
 interface MovieSectionProps {
