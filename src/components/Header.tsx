@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { IconLogo } from "./Icon";
 import SlideMenu from "./SlideMenu";
+import Link from "next/link";
 
 interface HeaderProps {
   isInView: boolean; // 監視対象の要素がビューポート内かどうか
@@ -25,12 +26,14 @@ const Header = ({ isInView }: HeaderProps) => {
     >
       <ul className='flex justify-between items-center'>
         <li className='w-3/5 md:w-72'>
-          <IconLogo
-            width='100%'
-            height='auto'
-            color={logoColor}
-            label='RockmovePhotography'
-          />
+          <Link href={"/"}>
+            <IconLogo
+              width='100%'
+              height='auto'
+              color={logoColor}
+              label='RockmovePhotography'
+            />
+          </Link>
         </li>
         <li>
           <SlideMenu />
