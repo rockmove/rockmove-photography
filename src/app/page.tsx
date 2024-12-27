@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
-import TextBox from "@/components/TextBox";
 import VideoHeader from "@/components/VideoHeader";
 import TopDescription from "@/components/TopDescription";
 import Profile from "@/components/Profile";

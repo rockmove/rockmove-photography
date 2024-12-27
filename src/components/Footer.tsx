@@ -1,13 +1,8 @@
 import React from "react";
 import { IconFacebook, IconInstagram, IconLogo, IconX } from "./Icon";
-import { Noto_Serif_JP, DM_Serif_Text } from "next/font/google";
+import { DM_Serif_Text } from "next/font/google";
 import Link from "next/link";
 
-const notoSerifJP = Noto_Serif_JP({
-  weight: ["200", "400", "700"],
-  style: "normal",
-  subsets: ["latin"],
-});
 const dmSerifText = DM_Serif_Text({
   weight: ["400"],
   style: "normal",

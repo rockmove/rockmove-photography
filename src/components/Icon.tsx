@@ -11,7 +11,7 @@ interface IconProps {
 // サイトのロゴ
 export const IconLogo = ({
   color = "black",
-  width = 100,
+  width = "100%",
   height = "auto",
   label = "icon",
 }: IconProps) => {
