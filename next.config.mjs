@@ -8,6 +8,9 @@ const nextConfig = {
       },
     ],
   },
+  compiler: {
+    styledComponents: true, // styled-components用の設定
+  },
 };
 
 export default nextConfig;
