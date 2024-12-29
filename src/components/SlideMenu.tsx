@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "./ui/button"; // ShadCN UIのボタン
 
 import { Noto_Serif_JP } from "next/font/google";
 import Link from "next/link";
+import MenuButtonComponent from "./MenuButton";
 
 const notoSerifJP = Noto_Serif_JP({
   weight: ["200", "400", "700"],
@@ -33,10 +33,7 @@ const SlideMenu = () => {
 
   return (
     <>
-      {/* メニューを開くボタン */}
-      <Button onClick={toggleMenu} className='relative z-50'>
-        {isOpen ? "CLOSE" : "OPEN"}
-      </Button>
+      <MenuButtonComponent isOpen={isOpen} onClick={toggleMenu} />
 
       {/* メニュー */}
       <div
