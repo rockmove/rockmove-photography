@@ -10,6 +10,7 @@ export async function GET(req: NextRequest) {
     const data = await microcmsClient.get({
       // MicroCMSで設定したエンドポイント名を設置
       endpoint: "photolist",
+      queries: { limit: 100 },
     });
     return NextResponse.json(data, {
       headers: {
