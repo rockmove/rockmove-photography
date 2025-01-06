@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "RockmovePhotography",
+    title: "rockmovePhotography",
     description: "rockmoveことRyuheiHosomiが撮った風景写真を紹介します。",
     url: "https://rockmovephotography.vercel.app/",
     images: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RockmovePhotography",
+    title: "rockmovePhotography",
     description: "rockmoveことRyuheiHosomiが撮った風景写真を紹介します。",
     images: ["/ogp.jpg"],
   },
