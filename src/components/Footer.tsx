@@ -24,9 +24,9 @@ const Footer = () => {
               />
             </Link>
           </p>
-          <p className={`${dmSerifText.className} text-white`}>
+          {/* <p className={`${dmSerifText.className} text-white`}>
             Operation by Ryuhei Hosomi
-          </p>
+          </p> */}
         </li>
         <li
           className={`${dmSerifText.className} lg:flex-1 lg:px-7 lg:border-r lg:border-gray-100 mb-7 lg:mb-0`}
@@ -57,44 +57,44 @@ const Footer = () => {
           <ul className='space-y-3 lg:space-y-5'>
             <li>
               <Link
-                href={"https://x.com/rockmoveworks1"}
+                href={"#"}
                 target='_blank'
                 className='flex items-center space-x-1 w-fit hover:opacity-60'
               >
                 <p>
                   <IconX size={28} />
                 </p>
-                <p className={`${dmSerifText.className} text-2xl text-white`}>
+                {/* <p className={`${dmSerifText.className} text-2xl text-white`}>
                   （rockmoveworks1）
-                </p>
+                </p> */}
               </Link>
             </li>
             <li>
               <Link
-                href={"https://www.instagram.com/rockmove/"}
+                href={"#"}
                 target='_blank'
                 className='flex items-center space-x-1 w-fit hover:opacity-60'
               >
                 <p>
                   <IconInstagram size={30} />
                 </p>
-                <p className={`${dmSerifText.className} text-2xl text-white`}>
+                {/* <p className={`${dmSerifText.className} text-2xl text-white`}>
                   （rockmove）
-                </p>
+                </p> */}
               </Link>
             </li>
             <li>
               <Link
-                href={"https://www.facebook.com/rockmove"}
+                href={"#"}
                 target='_blank'
                 className='flex items-center space-x-1 w-fit hover:opacity-60'
               >
                 <p>
                   <IconFacebook size={30} />
                 </p>
-                <p className={`${dmSerifText.className} text-2xl text-white`}>
+                {/* <p className={`${dmSerifText.className} text-2xl text-white`}>
                   （rockmove）
-                </p>
+                </p> */}
               </Link>
             </li>
           </ul>
